@@ -1,4 +1,5 @@
-package sql
+// Package sqllib provides utilities for layer repository functions.
+package sqllib
 
 import (
 	"database/sql"
@@ -11,6 +12,9 @@ type nullableValue interface {
 	Value() (driver.Value, error)
 }
 
+// Nullable returns sql.NullValue, contains value if valid, and nil if not.
+//
+// Great for PATCH requests with using COALESCE(). 
 func Nullable(val any) nullableValue {
 	switch val := val.(type) {
 	case string: 
